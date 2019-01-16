@@ -1,4 +1,52 @@
 {% extends '/layout/default_layout.twig' %}
 {% block container %}
-    <h3>Iniciar Yanic</h3>
+    <section class="bg-gray-darkest context-dark section-98 section-110" id="reserve-now">
+          <div class="container">
+            <h1><span class="d-block font-accent big">Reserve Now</span><span class="d-block offset-top-4 h3 text-light text-uppercase">EVERY GUEST IS SPECIAL HERE</span></h1>
+            <hr class="divider bg-mantis offset-top-30">
+            <!-- RD Mailform-->
+            <form class="rd-mailform text-left" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+              <div class="row grid-group-sm">
+                <div class="col-md-6 col-lg-3">
+                  <div class="form-group has-feedback">
+                    <label class="form-label form-label-sm form-label-outside" for="form-reserve-name">Name:</label>
+                    <input class="form-control input-sm" id="form-reserve-name" type="text" data-constraints="@Required" name="name"><span class="form-control-feedback mdi mdi-account" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="form-group has-feedback">
+                    <label class="form-label form-label-sm form-label-outside" for="form-reserve-email">E-Mail:</label>
+                    <input class="form-control input-sm" id="form-reserve-email" type="email" data-constraints="@Required" name="email"><span class="form-control-feedback mdi mdi-telegram" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class="col-md-4 col-lg-2">
+                  <div class="form-group has-feedback">
+                    <label class="form-label form-label-sm form-label-outside" for="form-reserve-date">Date:</label>
+                    <input class="form-control input-sm" id="form-reserve-date" type="text" data-constraints="@Required" name="date"><span class="form-control-feedback mdi mdi-calendar" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class="col-md-4 col-lg-2">
+                  <div class="form-group has-feedback">
+                    <label class="form-label form-label-sm form-label-outside" for="form-reserve-time">Time:</label>
+                    <input class="form-control input-sm" id="form-reserve-time" type="time" data-constraints="@Required" name="time"><span class="form-control-feedback mdi mdi-clock" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class="col-md-4 col-lg-2">
+                  <div class="form-group">
+                    <label class="form-label form-label-sm form-label-outside" for="form-reserve-persons">Persons:</label>
+                    <select class="form-control input-sm" id="form-reserve-persons" name="persons" data-minimum-results-for-search="Infinity">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="group offset-top-20 text-center offset-top-50">
+                <button class="btn btn-primary" type="submit" style="padding-left: 30px; padding-right: 30px;">Make a reservation</button>
+              </div>
+            </form>
+          </div>
+        </section>
 {% endblock %}
