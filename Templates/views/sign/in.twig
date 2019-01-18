@@ -1,0 +1,41 @@
+{% extends "layout/sign_layout.twig" %}
+
+{% block container %}
+<div class="p-front__content">
+
+  <div class="p-signin">
+    <form class="p-signin__form" action="/log/in" method="post">
+      <h2 class="p-signin__form-heading">Login CRM</h2>
+      <div class="p-signin__form-content">
+        <div class="row">
+          <div class="form-group col-md-12">
+            {% if type_alert %}                    
+              <div class="alert action-alert action-alert--danger has-btn" role="alert">
+                  <span class="action-alert__action-message">{{msj_alert |raw}}</span>
+                <span class="close ua-icon-alert-close action-alert__close" data-dismiss="alert"></span>
+              </div>
+            {% endif %}
+            <label for="p-signin-work-email">Correo Electronico</label>
+            <input name="email" type="email" class="form-control" id="p-signin-work-email" placeholder="you@yourcompany.com">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="p-signin-set-password">Contraseña</label>
+            <input name="pass" type="password" class="form-control" id="p-signin-set-password" placeholder="Contraseña">
+          </div>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-info btn-block btn-lg p-signin__form-submit">¡Empezar!</button>
+        </div>
+        <div class="p-signin__form-links">
+          <div class="p-signin__form-link">
+            ¿No tienes una cuenta? <a href="#" class="link-info">Registrate</a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends '/layout/default_layout.twig' %}
+{% block container %}
+    <section class="bg-gray-darkest context-dark m-5 pt-2 pb-4 animated fadeIn" id="reserve-now">
+        <div class="container">
+        	<table class="table table-striped text-dark h4">
+        			<tr>
+        				<th colspan="2" class="text-center h3">Reservación Exitosa!</th>
+        			</tr>  
+        			<tr>
+        				<th>Nombre</th>
+        				<td>{{Reserver.nameCustomer}}</td>
+        			</tr>
+        			<tr>
+        				<th>Teléfono</th>
+        				<td>{{Reserver.phoneCustomer}}</td>
+        			</tr>
+        			<tr>
+        				<th>Fecha de Reserva</th>
+        				<td>{{Reserver.dateReserver}}</td>
+        			</tr>
+        			<tr>
+        				<th>Hora de Reserva</th>
+        				<td>{{Reserver.timeReserver|date('h:i:s a')}}</td>
+        			</tr>
+        			<tr>
+        				<th>Mesa</th>
+        				{% if Reserver.typeReserver == 1 %}
+						<td>Sin Decoración</td>
+						{% else %}
+						<td>Con Decoración</td>    
+        				{% endif %}
+        			</tr>
+        			<tr>
+        				<th>Cantidad de Personas</th>
+        				<td>{{Reserver.numPerson}}</td>
+        			</tr>
+        			<tr>
+        				<th>Sede</th>
+        				{% if Reserver.venues == 1 %}
+						<td>Calle 7 Oeste #1-70</td>
+						{% elseif Reserver.venues == 2 %}
+                      	<td>Cl. 25 #85b, Pance</td>       	
+						{% else %}
+                      	<td>23a la maria, Cra. 125 #58, Ingenio</td>
+        				{% endif %}	
+        			</tr>
+        	</table>
+        </div>
+    </section>
+{% endblock %}

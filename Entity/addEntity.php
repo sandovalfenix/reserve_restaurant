@@ -78,7 +78,7 @@ class ".$tabla." extends Connect {
 	}
 
 	public function read(\$col='*', \$row=false, \$property = NULL, \$value = NULL, \$limit='25'){
-		\$complement = (!empty(\$property) && !empty(\$value)) ? \"WHERE \".\$createproperty.\" = \".\$value : '';
+		\$complement = (!empty(\$property) && !empty(\$value)) ? \"WHERE \".\$property.\" = \".\$value : '';
 		
 		\$Query = \$this->prepare(\"SELECT \".\$col.\" FROM \".self::TABLA.\" \$complement ORDER BY ".$idProperty." LIMIT \".\$limit);
 

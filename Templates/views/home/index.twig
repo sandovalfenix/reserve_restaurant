@@ -1,44 +1,70 @@
 {% extends '/layout/default_layout.twig' %}
 {% block container %}
-    <section class="bg-gray-darkest context-dark mt-5 pt-2" id="reserve-now">
+    <section class="bg-gray-darkest context-dark mt-3 pt-2" id="reserve-now">
           <div class="container">
-            <h1><span class="d-block font-accent big">Reserva Ahora</span><span class="d-block offset-top-4 h3 text-uppercase">CADA INVITADO ES ESPECIAL AQUI</span></h1>
+            <h1><span class="d-block font-accent big">Reserva Ahora</span><b class="d-block offset-top-4 h4 text-uppercase">CADA INVITADO ES ESPECIAL AQUI</b></h1>
             <hr class="divider bg-mantis offset-top-30">
             <!-- RD Mailform-->
-            <form class="rd-mailform text-left" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+            <form class="rd-mailform text-left" data-form-output="form-output-global" data-form-type="contact" method="post" action="/reserver/make">
               <div class="row grid-group-sm">
                 <div class="col-md-6 col-lg-3">
                   <div class="form-group has-feedback">
                     <label class="form-label form-label-sm form-label-outside" for="form-reserve-name">Nombre:</label>
-                    <input class="form-control input-sm" id="form-reserve-name" type="text" data-constraints="@Required" name="name"><span class="form-control-feedback mdi mdi-account" aria-hidden="true"></span>
+                    <input class="form-control input-sm" id="form-reserve-name" type="text" data-constraints="@Required" name=":nameCustomer"><span class="form-control-feedback mdi mdi-account" aria-hidden="true"></span>
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
                   <div class="form-group has-feedback">
                     <label class="form-label form-label-sm form-label-outside" for="form-reserve-phone">Teléfono:</label>
-                    <input class="form-control input-sm" id="form-reserve-phone" type="text" data-constraints="@Required" name="phone"><span class="form-control-feedback mdi mdi-phone" aria-hidden="true"></span>
+                    <input class="form-control input-sm" id="form-reserve-phone" type="text" data-constraints="@Required" name=":phoneCustomer"><span class="form-control-feedback mdi mdi-phone" aria-hidden="true"></span>
                   </div>
                 </div>
-                <div class="col-md-4 col-lg-2">
+                <div class="col-md-6 col-lg-3">
                   <div class="form-group has-feedback">
                     <label class="form-label form-label-sm form-label-outside" for="form-reserve-date">Fecha:</label>
-                    <input class="form-control input-sm" id="form-reserve-date" type="date" data-constraints="@Required" name="date"><span class="form-control-feedback mdi mdi-calendar" aria-hidden="true"></span>
+                    <input class="form-control input-sm" id="form-reserve-date" type="date" data-constraints="@Required" name=":dateReserver"><span class="form-control-feedback mdi mdi-calendar" aria-hidden="true"></span>
                   </div>
                 </div>
                 <div class="col-md-4 col-lg-2">
                   <div class="form-group has-feedback">
                     <label class="form-label form-label-sm form-label-outside" for="form-reserve-time">Hora:</label>
-                    <input class="form-control input-sm" id="form-reserve-time" type="time" data-constraints="@Required" name="time"><span class="form-control-feedback mdi mdi-clock" aria-hidden="true"></span>
+                    <input class="form-control input-sm" id="form-reserve-time" type="time" data-constraints="@Required" name=":timeReserver"><span class="form-control-feedback mdi mdi-clock" aria-hidden="true"></span>
                   </div>
                 </div>
-                <div class="col-md-4 col-lg-2">
+                <div class="col-md-2 col-lg-1">
                   <div class="form-group">
                     <label class="form-label form-label-sm form-label-outside" for="form-reserve-persons">Personas:</label>
-                    <select class="form-control input-sm" id="form-reserve-persons" name="persons" data-minimum-results-for-search="Infinity">
+                    <select class="form-control input-sm" id="form-reserve-persons" name=":numPerson" data-minimum-results-for-search="Infinity">
                       <option value="1">1</option>
-                      <option value="2">2</option>
+                      <option value="2" selected>2</option>
                       <option value="3">3</option>
                       <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                  <div class="form-group">
+                    <label class="form-label form-label-sm form-label-outside" for="form-reserve-persons">Mesa:</label>
+                    <select class="form-control input-sm" id="form-reserve-persons" name=":typeReserver" data-minimum-results-for-search="Infinity">
+                      <option value="1" selected>Sin Decoración</option>
+                      <option value="2">Con Decoración</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                  <div class="form-group">
+                    <label class="form-label form-label-sm form-label-outside" for="form-reserve-persons">Sede:</label>
+                    <select class="form-control input-sm" id="form-reserve-persons" name=":venues" data-minimum-results-for-search="Infinity">
+                      <option value="1">Calle 7 Oeste #1-70</option>
+                      <option value="2">Cl. 25 #85b, Pance</option>
+                      <option value="3">23a la maria, Cra. 125 #58, Ingenio</option>
                     </select>
                   </div>
                 </div>

@@ -14,9 +14,8 @@ class DefaultController extends Config {
 		$this->render('home/index.twig');
 	}
 
-	public function scriptSQL(){
-		extract($_POST);		
+	public function createEntity($script){	
 		$addEntity = new addEntity;
-		$addEntity->scriptSQL($script);
+		$addEntity->createEntity($script);
 	}
 }

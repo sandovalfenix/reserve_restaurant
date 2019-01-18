@@ -1,0 +1,166 @@
+{% block nav %}
+<div class="navbar navbar-light navbar-expand-lg">
+    <button class="sidebar-toggler" type="button">
+      <span class="ua-icon-sidebar-open sidebar-toggler__open"></span>
+      <span class="ua-icon-alert-close sidebar-toggler__close"></span>
+    </button>
+
+    <span class="navbar-brand">
+      <a href="/"><img src="{{assets}}/img/logo.png" width="150px" class="navbar-brand__logo"></a>
+      <span class="ua-icon-menu slide-nav-toggle"></span>
+    </span>
+
+    <span class="navbar-brand-sm">
+      <a href="/"><img src="{{assets}}/img/logo-sm.png" alt="" class="navbar-brand__logo"></a>
+      <span class="ua-icon-menu slide-nav-toggle"></span>
+    </span>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse">
+      <span class="ua-icon-navbar-open navbar-toggler__open"></span>
+      <span class="ua-icon-alert-close navbar-toggler__close"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" style="right: 0; position: fixed" id="navbar-collapse">
+      <div class="dropdown navbar-dropdown no-arrow navbar-notify-dropdown">
+        <a class="dropdown-toggle navbar-dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          <span class="navbar-notify navbar-notify--notifications">
+            <span>
+              <span class="navbar-notify__icon mdi mdi-bell"></span>
+              <span class="navbar-notify__text">Notificaciones</span>
+            </span>
+            <!--<span class="navbar-notify__amount">3</span>-->
+            <!--<span class="navbar-notify__indicator"></span>-->
+          </span>
+      </a>
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown-menu navbar-dropdown-notifications">
+          <div class="navbar-dropdown-notifications__header">
+            <span>NOTIFICATIONES</span>
+            <a href="#" class="navbar-dropdown-notifications__mark-read">
+              Marcar todos como leídos <span class="navbar-dropdown-notifications__mark-read-icon ua-icon-arrow-circle-down"></span>
+            </a>
+          </div>
+          <div class="navbar-dropdown-notifications__body js-scrollable">
+            <!--<div class="navbar-dropdown-notifications__body-empty"><img class="navbar-dropdown-notifications__body-empty-image" src="{{assets}}/img/empty-notifications.png" alt=""/>
+              <div class="navbar-dropdown-notifications__body-empty-text">You`re up to date!</div>
+            </div>-->
+
+            <div class="navbar-dropdown-notification is-new">
+              <div class="navbar-dropdown-notification__user">
+                <img class="navbar-dropdown-notification__avatar rounded-circle" src="{{assets}}/img/users/user-4.png" alt="" width="40" height="40">
+                <div class="ua-icon-circle-check navbar-dropdown-notification__icon color-success"></div>
+              </div>
+              <div class="navbar-dropdown-notification__content">
+                <a href="#" class="navbar-dropdown-notification__action-name">Antonius in Project X </a>
+                <div class="navbar-dropdown-notification__action-desc">Añadir una <strong>Tarea</strong></div>
+              </div>
+              <span class="navbar-dropdown-notification__date">9:49 AM</span>
+            </div>
+            <div class="navbar-dropdown-notification">
+              <div class="navbar-dropdown-notification__user">
+                <img class="navbar-dropdown-notification__avatar rounded-circle" src="{{assets}}/img/users/user-6.png" alt="" width="40" height="40">
+                <div class="ua-icon-warning navbar-dropdown-notification__icon color-warning navbar-dropdown-notification__icon--warning"></div>
+              </div>
+              <div class="navbar-dropdown-notification__content">
+                <a href="#" class="navbar-dropdown-notification__action-name">Antonius in Project X </a>
+                <div class="navbar-dropdown-notification__action-desc">Añadir una <strong>Tarea</strong></div>
+              </div>
+              <span class="navbar-dropdown-notification__date">9:49 AM</span>
+            </div>
+            <div class="navbar-dropdown-notification__date-separator">Ayer</div>
+            <div class="navbar-dropdown-notification">
+              <div class="navbar-dropdown-notification__user">
+                <img class="navbar-dropdown-notification__avatar rounded-circle" src="{{assets}}/img/users/user-8.png" alt="" width="40" height="40">
+                <div class="ua-icon-letter-alt navbar-dropdown-notification__icon color-danger navbar-dropdown-notification__icon--letter"></div>
+              </div>
+              <div class="navbar-dropdown-notification__content">
+                <a href="#" class="navbar-dropdown-notification__action-name">Antonius in Project X </a>
+                <div class="navbar-dropdown-notification__action-desc">Añadir una <strong>Tarea</strong></div>
+              </div>
+              <span class="navbar-dropdown-notification__date">9:49 AM</span>
+            </div>
+          </div>
+          <a class="navbar-dropdown-notifications__view-all" href="#"><span class="icon ua-icon-view-all"></span><span>Ver todos</span></a>
+        </div>
+      </div>
+      <div class="dropdown navbar-dropdown no-arrow navbar-notify-dropdown navbar-notify-dropdown--messages">
+        <a class="dropdown-toggle navbar-dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          <span class="navbar-notify">
+            <span>
+              <span class="navbar-notify__icon mdi mdi-email"></span>
+              <span class="navbar-notify__text">Mensajes</span>
+            </span>
+            <span class="navbar-notify__indicator"></span>
+            <!--<span class="navbar-notify__amount">5</span>-->
+          </span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown-menu navbar-dropdown-notifications navbar-dropdown-messages">
+          <div class="navbar-dropdown-notifications__header"><span>MENSAJES</span>
+            <a href="#" class="navbar-dropdown-notifications__mark-read">
+              Marca todos como leídos <span class="navbar-dropdown-notifications__mark-read-icon ua-icon-arrow-circle-down"></span>
+            </a>
+          </div>
+          <div class="navbar-dropdown-notifications__body navbar-dropdown-notifications__body-messages js-scrollable">
+            <div class="navbar-dropdown-notifications__item is-unread">
+              <img class="navbar-dropdown-notifications__item-avatar rounded-circle" src="{{assets}}/img/users/user-4.png" alt="" width="40" height="40"/>
+              <div class="navbar-dropdown-notifications__item-notify">
+                <div>
+                  <span class="icon ua-icon-reply-to"></span>
+                  <strong>Gabriel Saunders</strong> respondio a <strong>your comment</strong></strong>
+                </div>
+                <div class="navbar-dropdown-notifications__item-datetime">5 minute ago</div>
+              </div>
+              <div class="navbar-dropdown-notifications__item-actions">
+                <span class="icon ua-icon-circle-check navbar-dropdown-notifications__item-mark-as-read" data-toggle="tooltip" data-placement="top" title="Mark as read"></span>
+                <span class="icon ua-icon-circle-close navbar-dropdown-notifications__item-remove" data-toggle="tooltip" data-placement="top" title="Delete notification"></span>
+              </div>
+            </div>
+            <div class="navbar-dropdown-notifications__item">
+              <img class="navbar-dropdown-notifications__item-avatar rounded-circle" src="{{assets}}/img/users/user-5.png" alt="" width="40" height="40"/>
+              <div class="navbar-dropdown-notifications__item-notify">
+                <div>
+                  <span class="icon ua-icon-comments"></span>
+                  <strong>Gabriel Saunders</strong> respondio a <strong>your comment</strong></strong>
+                </div>
+                <div class="navbar-dropdown-notifications__item-datetime">5 minute ago</div>
+              </div>
+              <div class="navbar-dropdown-notifications__item-actions">
+                <span class="icon ua-icon-circle-check navbar-dropdown-notifications__item-mark-as-read" data-toggle="tooltip" data-placement="top" title="Mark as read"></span>
+                <span class="icon ua-icon-circle-close navbar-dropdown-notifications__item-remove" data-toggle="tooltip" data-placement="top" title="Delete notification"></span>
+              </div>
+            </div>
+          </div><a class="navbar-dropdown-notifications__view-all" href="#"><span class="icon ua-icon-view-all"></span><span>Ver Todos</span></a>
+        </div>
+      </div>
+      <div class="dropdown navbar-dropdown">
+        <a class="dropdown-toggle navbar-dropdown-toggle navbar-dropdown-toggle__user" data-toggle="dropdown" href="#">
+          <img src="{{assets}}/img/avatar/{{session.AVATAR}}" alt="" class="navbar-dropdown-toggle__user-avatar">
+          <span class="navbar-dropdown__user-name">{{session.NAME}}</span>
+        </a>
+        <div class="dropdown-menu navbar-dropdown-menu navbar-dropdown-menu__user">
+          <div class="navbar-dropdown-user-content">
+            <div class="dropdown-user__avatar"><img src="{{assets}}/img/avatar/{{session.AVATAR}}" alt=""/></div>
+            <div class="dropdown-info">
+              <div class="dropdown-info__name">{{session.NAME}}</div>
+              <div class="dropdown-info__job">{{session.ROLE}}</div>
+            </div>
+          </div>
+            <a class="dropdown-item navbar-dropdown__item" href="/log/out">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+ </div>
+{% endblock %}
+{% block script %}
+    <script>
+      $(document).ready(function() {
+        $('#modalAdvisor').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) // Button that triggered the modal
+          var recipient = button.data('whatever') // Extract info from data-* attributes
+          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+          var modal = $(this)
+          modal.find('.modal-title').text(recipient+' Asesor')
+        });
+      }); 
+    </script>
+{% endblock %}
