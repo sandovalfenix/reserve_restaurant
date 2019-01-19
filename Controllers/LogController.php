@@ -25,8 +25,8 @@ class LogController extends Config {
 		$User = new Usuarios;
 		$Advisor = new Asesores;
 
-		$User->setEmail($email);
-		$row = $User->read('*', 'email', "'".$email."'", true);
+		$User->setUsername($username);
+		$row = $User->read('*', 'username', "'".$username."'", true);
 		if($User->check($pass)){
 			$Advisor->setIdUser($this->openCypher($row['idUser']));
 			if ($Advisor->row()) {
@@ -53,7 +53,7 @@ class LogController extends Config {
 			$_SESSION['alert'] = false;
 
 			$_SESSION['ID'] = $this->openCypher($row['idUser']);
-			$_SESSION['EMAIL'] = $email;
+			$_SESSION['USERNAME'] = $username;
 			$_SESSION['START_TIME'] = time();
 			$_SESSION['ROLE'] = $row['role'];
 			$_SESSION['NAME'] = $name;

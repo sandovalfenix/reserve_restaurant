@@ -1,0 +1,53 @@
+  <div class="modal-dialog modal-sm">
+    <form method="post" action="/reserver/new">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title" id="reserverModalLabel">Evento</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" name=":idReserver" value="{{Reserver.idReserver|encrypt}}">
+            <div class="input-group input-group-icon icon-left input-group-lg">
+              <input class="form-control form-control-lg" type="text" placeholder="Nombre Evento" name=":nameCustomer" value="{{Reserver.nameCustomer}}" requiered>
+              <span class="input-icon fas fa-tags"></span>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Fecha Reserva:</label>
+              <input class="form-control form-control-lg" type="date" name=":dateReserver" value="{{Reserver.dateReserver}}" requiered>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Hora Reserva:</label>
+              <input class="form-control form-control-lg" type="time" name=":timeReserver" value="{{Reserver.timeReserver}}" requiered>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Cantidad de personas:</label>
+              <input class="form-control form-control-lg" type="number" name=":numPerson" value="{{Reserver.numPerson}}" requiered>
+              <input type="hidden" name=":idReserver" value="{{Reserver.idReserver|encrypt}}">
+            </div>
+            <div class="form-group">
+              <label class="control-label">Mesa:</label>
+              <select class="form-control form-control-lg" name=":typeReserver" requiered>
+                {% if Reserver.typeReserver == 1 %}
+                <option value="{{Reserver.typeReserver}}" selected>Sin Decoración</option>
+                <option value="2">Con Decoración - $30.000</option>
+                {% else %}
+                <option value="{{Reserver.typeReserver}}" selected>Con Decoración - $30.000</option>
+                <option value="1">Sin Decoración</option>
+                {% endif %}                
+              </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+          {% if Reserver.idReserver %}
+              <button type="submit" class="btn btn-warning">Editar</button>
+          {% else %}
+              <button type="submit" class="btn btn-success">Añadir</button>
+          {% endif %}        
+        </div>
+      </div>    
+    </form>
+  </div>
+</div>

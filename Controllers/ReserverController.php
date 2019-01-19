@@ -27,67 +27,65 @@ class ReserverController extends Config {
 	}
 
 	public function crud() {		
-		$this->render('dashboard/courses/data.twig', array(
-			'alert' => $_SESSION['alert'],
+		$this->render('dashboard/reservers/data.twig', array(
+			/*'alert' => $_SESSION['alert'],*/
 		));
 
-		$_SESSION['alert'] = false;
+		//$_SESSION['alert'] = false;
 	}
 
 	public function read(){
-		$Event = new Cursos;
-
-		$rows = $Event->read();
-		$jsEvent = '[';
+		$Reservers = new Reserver;
+		$jsReserver = '[';
 		$i=0;
-		foreach ($rows as $row) {
+		foreach ($Reservers->read() as $Reserver) {
+		extract($Reserver);
 		if ($i>0) {
-			$jsEvent .=',';
+			$jsReserver .=',';
 		}
-		$id = $this->openCypher($row['idCourse']);
-		$jsEvent .= '
+		$idReserver = $this->encrypt($idReserver);
+		$typeReserver = ($typeReserver == 1) ? 'Sin Decoración' : 'Con Decoración - $30.000';
+		$jsReserver .= '
 			{
-	            "title": "'.$row['name'].'", 
-	            "start": "'.$row['dateStart'].'", 
-	            "end": "'.$row['dateFinal'].'", 
-	            "type": "info", 
-	            "typeTitle": "E",';
-	            	if($_SESSION['ROLE'] == 'SADMIN' OR $_SESSION['ROLE'] == 'ADMIN'){
-	        $jsEvent .= '"desc": "<h3><a href=\'javascript:void(0)\' data-idEditModal='.$id.' data-toggle=\'modal\' data-target=\'#modalCourse\' title=\'Editar\' class=\'text-warning fas fa-edit\'></a> | <a href=\'javascript:void(0)\' data-idRemoveModal='.$id.' data-toggle=\'modal\' data-target=\'#deletedEvent\' title=\'Eliminar\' class=\'text-danger fas fa-trash\'></a></h3>",';
-	            	}else{
-	         			$jsEvent .= '"desc": "",';
-	            	}
-	            $jsEvent .= '   
+	            "id": "'.$idReserver.'",
+	            "title": "'.$nameCustomer.'", 
+	            "start": "'.$dateReserver.'T'.$timeReserver.'",
+	            "type": "success", 
+	            "typeTitle": "'.substr($nameCustomer,0,1).'",
+	            "phone": "'.$phoneCustomer.'",
+	            "email": "'.$emailCustomer.'",
+	            "numPerson": "'.$numPerson.'",
+	            "table": "'.$typeReserver.'",
 	            "color": "#'.substr(md5(mt_rand()),0,6).'75"
 	        }';
 	    $i++;
 		}
-		$jsEvent .= ']';
+		$jsReserver .= ']';
 
-		echo $jsEvent;
+		echo $jsReserver;
 	}
 
 	public function editForm($id){
-		$Event = new Cursos;
-		$Event->setIdCourse($id);
-		$this->render('dashboard/courses/form.twig', array(
-			'Course' => $Event->row(),
+		$Reserver = new Reserver;
+		
+		$this->render('dashboard/reservers/form.twig', array(
+			'Reserver' => $Reserver->read('*',true,'idReserver', $this->encrypt($id, 'decrypt')),
 		));
 	}
 
 	public function update(){
 		extract($_POST);
-		$Event = new Cursos;
-		$Event->setIdCourse($idCourse);
+		$Reserver = new Reserver;
+		$Reserver->setIdCourse($idCourse);
 		
-		$Event->update("name", "'".$name."'");
-		$Event->update("dateStart", "'".$dateStart."'");
-		$Event->update("dateFinal", "'".$dateFinal."'");
+		$Reserver->update("name", "'".$name."'");
+		$Reserver->update("dateStart", "'".$dateStart."'");
+		$Reserver->update("dateFinal", "'".$dateFinal."'");
 
 		$type = 'info';
 
     
-		$msj = 'El Evento fue Actualizado Correctamente'; 
+		$msj = 'El Reservero fue Actualizado Correctamente'; 
 		
 		$_SESSION['alert'] = array(
 			'type' => $type,
@@ -98,15 +96,15 @@ class ReserverController extends Config {
 	}
 
 	public function delete($id){
-		$Event = new Cursos;
-		$Event->setIdCourse($id);
+		$Reserver = new Reserver;
+		$Reserver->setIdCourse($id);
 		
-		$Event->delete();
+		$Reserver->delete();
 
 		$type = 'danger';
 
     
-		$msj = 'El Evento fue Eliminado Correctamente'; 
+		$msj = 'El Reservero fue Eliminado Correctamente'; 
 		
 		$_SESSION['alert'] = array(
 			'type' => $type,

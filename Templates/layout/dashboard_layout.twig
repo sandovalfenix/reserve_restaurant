@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	    <title>{% block title %}Dashboard{% endblock %}</title>
+	    <link rel="shortcut icon" href="{{assets}}/img/favicon.png">
+		<!--Style CSS-->
+
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+		<link rel="shortcut icon" href="{{assets}}/img/favicon.png">
+  		<!--Style CSS-->
+		<link rel="stylesheet" href="{{assets}}/fonts/open-sans/style.min.css"> <!-- common font  styles  -->
+		<link rel="stylesheet" href="{{assets}}/fonts/universe-admin/style.css"> <!-- universeadmin icon font styles -->
+		<link rel="stylesheet" href="{{assets}}/fonts/mdi/css/materialdesignicons.min.css"> <!-- meterialdesignicons -->
+		<link rel="stylesheet" href="{{assets}}/fonts/iconfont/style.css"> <!-- DEPRECATED iconmonstr -->
+		<link rel="stylesheet" href="{{assets}}/vendor/flatpickr/flatpickr.min.css"> <!-- original flatpickr plugin (datepicker) styles -->
+		<link rel="stylesheet" href="{{assets}}/vendor/simplebar/simplebar.css"> <!-- original simplebar plugin (scrollbar) styles  -->
+		<link rel="stylesheet" href="{{assets}}/vendor/tagify/tagify.css"> <!-- styles for tags -->
+		<link rel="stylesheet" href="{{assets}}/vendor/tippyjs/tippy.css"> <!-- original tippy plugin (tooltip) styles -->
+		<link rel="stylesheet" href="{{assets}}/vendor/select2/css/select2.min.css"> <!-- original select2 plugin styles -->
+		<link rel="stylesheet" href="{{assets}}/vendor/bootstrap/css/bootstrap.min.css"> <!-- original bootstrap styles -->
+		<link rel="stylesheet" href="{{assets}}/css/style.min.css" id="stylesheet"> <!-- universeadmin styles -->
+
+
+		{% block stylesheet %}{% endblock %}
+
+		<script src="{{assets}}/js/ie.assign.fix.min.js"></script>
+		{% block javascript %}{% endblock %}
+	</head>
+	{% block body %}
+	<body class="js-loading ">
+		<!--Loading-->
+		<div class="page-preloader js-page-preloader">
+		  <div class="page-preloader__logo">
+		    <img src="{{assets}}/img/logo.png" alt="" class="page-preloader__logo-image">
+		  </div>
+		  <div class="page-preloader__loader">
+		    <div class="progress progress-rounded page-preloader__loader-progress">
+		      <div id="page-loader-progress-bar" class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+		    </div>
+		  </div>
+		  <div class="page-preloader__copyright">SDigital Software Technology, 2019</div>
+		</div>
+		<!--LoadingEnd-->
+		<!-- Encabezado  -->
+		{% block nav %}{% endblock %}
+
+		<!-- Contenido  -->
+		<div class="page-wrap">
+		{% block container %}{% endblock %}
+		</div>
+
+		<script src="{{assets}}/vendor/echarts/echarts.min.js"></script>
+
+		<script src="{{assets}}/vendor/jquery/jquery.min.js"></script>
+		<script src="{{assets}}/vendor/popper/popper.min.js"></script>
+		<script src="{{assets}}/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="{{assets}}/vendor/select2/js/select2.full.min.js"></script>
+		<script src="{{assets}}/vendor/simplebar/simplebar.js"></script>
+		<script src="{{assets}}/vendor/text-avatar/jquery.textavatar.js"></script>
+		<script src="{{assets}}/vendor/tippyjs/tippy.all.min.js"></script>
+		<script src="{{assets}}/vendor/flatpickr/flatpickr.min.js"></script>
+		<script src="{{assets}}/vendor/wnumb/wNumb.js"></script>
+		<script src="{{assets}}/js/main.js"></script>
+		<script src="{{assets}}/js/core.js" type="text/javascript"></script>
+
+		<script src="{{assets}}/vendor/jquery-circle-progress/circle-progress.min.js"></script>
+		<script src="{{assets}}/js/preview/default-dashboard.min.js"></script>
+
+		
+		<!-- Script JS -->
+	    {% block script %}{% endblock %}		
+	</body>
+	{% endblock %}
+</html>
+
+	
+
+	
+
+
+	

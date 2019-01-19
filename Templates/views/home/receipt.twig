@@ -14,6 +14,10 @@
         				<th>Teléfono</th>
         				<td>{{Reserver.phoneCustomer}}</td>
         			</tr>
+                    <tr>
+                        <th>Correo Electrónico</th>
+                        <td>{{Reserver.emailCustomer}}</td>
+                    </tr>
         			<tr>
         				<th>Fecha de Reserva</th>
         				<td>{{Reserver.dateReserver}}</td>
@@ -27,7 +31,7 @@
         				{% if Reserver.typeReserver == 1 %}
 						<td>Sin Decoración</td>
 						{% else %}
-						<td>Con Decoración</td>    
+						<td>Con Decoración - $30.000</td>    
         				{% endif %}
         			</tr>
         			<tr>

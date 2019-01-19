@@ -1,57 +1,30 @@
 <div class="sidebar-section">
   <div >
     <div class="sidebar-user-a">
-      <img src="{{assets}}/img/avatar/{{session.AVATAR}}" alt="" class="sidebar-user-a__avatar rounded-circle">
+      <img src="{{assets}}/img/image.gif" width="230px">
       <div class="sidebar-user-a__name">{{session.NAME}}</div>
       <div class="sidebar-user-a__description text-light">{{session.ROLE}}</div>
     </div>
       <div class="sidebar-section__separator">Dashboard</div>
       <ul class="sidebar-section-nav">
         <li class="sidebar-section-nav__item">
-          <a class="sidebar-section-nav__link" href="/course/crud">
+          <a class="sidebar-section-nav__link" href="/reserver/read">
             <span class="sidebar-section-nav__item-icon fas fa-tags"></span>
-            <span class="sidebar-section-nav__item-text">Eventos</span>
+            <span class="sidebar-section-nav__item-text">Reservas</span>
             <!--span class="badge sidebar-section-nav__badge">2</span-->
           </a>
         </li>
-        {% if session.ROLE == 'ADMIN' or session.ROLE == 'SADMIN' %}
-        <li class="sidebar-section-nav__item">
-          <a class="sidebar-section-nav__link" href="/advisor/crud">
-            <span class="sidebar-section-nav__item-icon fas fa-suitcase"></span>
-            <span class="sidebar-section-nav__item-text">Asesores</span>
-            <!--span class="badge sidebar-section-nav__badge">2</span-->
-          </a>
-        </li>
-        {% endif %}
-        <li class="sidebar-section-nav__item">
-          <a class="sidebar-section-nav__link" href="/customer/crud">
-            <span class="sidebar-section-nav__item-icon iconfont-user"></span>
-            <span class="sidebar-section-nav__item-text">Clientes</span>
-            <!--span class="badge sidebar-section-nav__badge">2</span-->
-          </a>
-        </li>
-        {% if session.ROLE == 'SADMIN' %}
-        <li class="sidebar-section-nav__item">
-          <a class="sidebar-section-nav__link" href="/user/crud">
-            <span class="sidebar-section-nav__item-icon iconfont-users"></span>
-            <span class="sidebar-section-nav__item-text">Usuarios</span>
-            <!--span class="badge sidebar-section-nav__badge">2</span-->
-          </a>
-        </li>
-      {% endif %}
       </ul>
     </div>
-    {% if session.ROLE == 'ASESOR' %}
     <div class="sidebar-section__separator">Configuración</div>
     <ul class="sidebar-section-nav">
       <li class="sidebar-section-nav__item">
         <a class="sidebar-section-nav__link" href="/user/profile/{{session.ID}}">
           <span class="sidebar-section-nav__item-icon iconfont-activity"></span>
-          <span class="sidebar-section-nav__item-text">{{session.NAME}}</span>
+          <span class="sidebar-section-nav__item-text">Perfil</span>
         </a>
       </li>
     </ul>
-  {% endif %}
 
     <!--<div class="sidebar-section-nav__footer">
       <ul class="sidebar-section-nav">

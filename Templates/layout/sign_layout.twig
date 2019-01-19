@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	    <title>{% block title %}Loging{% endblock %}</title>
+	    
+		<link rel="shortcut icon" href="{{assets}}/img/favicon.png">
+  		<!--Style CSS-->
+		<link rel="stylesheet" href="{{assets}}/fonts/open-sans/style.min.css"> <!-- common font  styles  -->
+		<link rel="stylesheet" href="{{assets}}/fonts/universe-admin/style.css"> <!-- universeadmin icon font styles -->
+		<link rel="stylesheet" href="{{assets}}/fonts/mdi/css/materialdesignicons.min.css"> <!-- meterialdesignicons -->
+		<link rel="stylesheet" href="{{assets}}/fonts/iconfont/style.css"> <!-- DEPRECATED iconmonstr -->
+		<link rel="stylesheet" href="{{assets}}/vendor/flatpickr/flatpickr.min.css"> <!-- original flatpickr plugin (datepicker) styles -->
+		<link rel="stylesheet" href="{{assets}}/vendor/simplebar/simplebar.css"> <!-- original simplebar plugin (scrollbar) styles  -->
+		<link rel="stylesheet" href="{{assets}}/vendor/tagify/tagify.css"> <!-- styles for tags -->
+		<link rel="stylesheet" href="{{assets}}/vendor/tippyjs/tippy.css"> <!-- original tippy plugin (tooltip) styles -->
+		<link rel="stylesheet" href="{{assets}}/vendor/select2/css/select2.min.css"> <!-- original select2 plugin styles -->
+		<link rel="stylesheet" href="{{assets}}/vendor/bootstrap/css/bootstrap.min.css"> <!-- original bootstrap styles -->
+		<link rel="stylesheet" href="{{assets}}/css/style.min.css" id="stylesheet"> <!-- universeadmin styles -->
+		{% block stylesheet %}{% endblock %}
+
+		<script src="{{assets}}/js/ie.assign.fix.min.js"></script>
+		{% block javascript %}{% endblock %}
+	</head>
+	{% block body %}
+	<body class="p-front">
+		<!--Menu-->
+		<div class="navbar navbar-light navbar-expand-lg p-front__navbar"> <!-- is-dark -->
+		      <span class="navbar-brand">
+			      <a href="/"><img src="{{assets}}/img/logo.png" width="150px" class="navbar-brand__logo"></a>
+			      <span class="ua-icon-menu slide-nav-toggle"></span>
+			    </span>
+
+			    <span class="navbar-brand-sm">
+			      <a href="/"><img src="{{assets}}/img/logo-sm.png" alt="" class="navbar-brand__logo"></a>
+			      <span class="ua-icon-menu slide-nav-toggle"></span>
+			    </span>
+
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse">
+		    <span class="ua-icon-navbar-open navbar-toggler__open"></span>
+		    <span class="ua-icon-alert-close navbar-toggler__close"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbar-collapse">
+		    <div class="p-front__navbar-collapse">
+		      <div class="navbar-nav">
+		        <a class="nav-item nav-link active" href="#">Nosotros</a>
+		        <a class="nav-item nav-link" href="#">Carateristicas</a>
+		        <a class="nav-item nav-link" href="#">Precios</a>
+		      </div>
+		      <form class="form-inline">
+		        <a class="btn btn-info btn-rounded" href="#">Registrarce</a>
+		      </form>
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Contenido  -->
+		{% block container %}{% endblock %}
+
+		<!-- Pie de Pagina  -->
+		{% block footer %}
+			<footer class="p-front__footer">
+			  <ul class="nav">
+			    <li class="nav-item">
+			      <a class="nav-link active" href="#">Contacto</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="#">FAQ</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="#">Términos & Condiciones</a>
+			    </li>
+			  </ul>
+			  <span>2018 &copy; SDigital Software Technology</span>
+			</footer>
+		{% endblock %}
+		<script src="{{assets}}/vendor/echarts/echarts.min.js"></script>
+
+		<script src="{{assets}}/vendor/jquery/jquery.min.js"></script>
+		<script src="{{assets}}/vendor/popper/popper.min.js"></script>
+		<script src="{{assets}}/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="{{assets}}/vendor/select2/js/select2.full.min.js"></script>
+		<script src="{{assets}}/vendor/simplebar/simplebar.js"></script>
+		<script src="{{assets}}/vendor/text-avatar/jquery.textavatar.js"></script>
+		<script src="{{assets}}/vendor/tippyjs/tippy.all.min.js"></script>
+		<script src="{{assets}}/vendor/flatpickr/flatpickr.min.js"></script>
+		<script src="{{assets}}/vendor/wnumb/wNumb.js"></script>
+		<script src="{{assets}}/js/main.js"></script>
+
+
+		<script src="{{assets}}/vendor/jquery-circle-progress/circle-progress.min.js"></script>
+		<script src="{{assets}}/js/preview/default-dashboard.min.js"></script>
+		<!-- Script JS -->
+	    {% block script %}{% endblock %}		
+	</body>
+	{% endblock %}
+</html>

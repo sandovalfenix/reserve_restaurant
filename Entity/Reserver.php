@@ -23,7 +23,7 @@ class Reserver extends Connect {
 	
 	//metodos para CRUD database
 	public function create($data){
-		$Query = $this->prepare("INSERT INTO ".self::TABLA." (dateReserver, timeReserver, nameCustomer, phoneCustomer, numPerson, typeReserver, venues) VALUES (:dateReserver, :timeReserver, :nameCustomer, :phoneCustomer, :numPerson, :typeReserver, :venues)");
+		$Query = $this->prepare("INSERT INTO ".self::TABLA." (dateReserver, timeReserver, nameCustomer, phoneCustomer, emailCustomer, numPerson, typeReserver, venues) VALUES (:dateReserver, :timeReserver, :nameCustomer, :phoneCustomer, :emailCustomer, :numPerson, :typeReserver, :venues)");
 		
 		$Query->execute($data);
 		

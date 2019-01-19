@@ -10,25 +10,31 @@
                 <div class="col-md-6 col-lg-3">
                   <div class="form-group has-feedback">
                     <label class="form-label form-label-sm form-label-outside" for="form-reserve-name">Nombre:</label>
-                    <input class="form-control input-sm" id="form-reserve-name" type="text" data-constraints="@Required" name=":nameCustomer"><span class="form-control-feedback mdi mdi-account" aria-hidden="true"></span>
+                    <input class="form-control input-sm" id="form-reserve-name" type="text" data-constraints="@Required" name=":nameCustomer" required><span class="form-control-feedback mdi mdi-account" aria-hidden="true"></span>
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
                   <div class="form-group has-feedback">
                     <label class="form-label form-label-sm form-label-outside" for="form-reserve-phone">Teléfono:</label>
-                    <input class="form-control input-sm" id="form-reserve-phone" type="text" data-constraints="@Required" name=":phoneCustomer"><span class="form-control-feedback mdi mdi-phone" aria-hidden="true"></span>
+                    <input class="form-control input-sm" id="form-reserve-phone" type="text" data-constraints="@Required" name=":phoneCustomer" required><span class="form-control-feedback mdi mdi-phone" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="form-group has-feedback">
+                    <label class="form-label form-label-sm form-label-outside" for="form-reserve-email">Correo Electrónico:</label>
+                    <input class="form-control input-sm" id="form-reserve-email" type="email" data-constraints="@Required" name=":emailCustomer"><span class="form-control-feedback mdi mdi-email" aria-hidden="true"></span>
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
                   <div class="form-group has-feedback">
                     <label class="form-label form-label-sm form-label-outside" for="form-reserve-date">Fecha:</label>
-                    <input class="form-control input-sm" id="form-reserve-date" type="date" data-constraints="@Required" name=":dateReserver"><span class="form-control-feedback mdi mdi-calendar" aria-hidden="true"></span>
+                    <input class="form-control input-sm" id="form-reserve-date" type="date" data-constraints="@Required" name=":dateReserver" required><span class="form-control-feedback mdi mdi-calendar" aria-hidden="true" required></span>
                   </div>
                 </div>
                 <div class="col-md-4 col-lg-2">
                   <div class="form-group has-feedback">
                     <label class="form-label form-label-sm form-label-outside" for="form-reserve-time">Hora:</label>
-                    <input class="form-control input-sm" id="form-reserve-time" type="time" data-constraints="@Required" name=":timeReserver"><span class="form-control-feedback mdi mdi-clock" aria-hidden="true"></span>
+                    <input class="form-control input-sm" id="form-reserve-time" type="time" data-constraints="@Required" name=":timeReserver" required><span class="form-control-feedback mdi mdi-clock" aria-hidden="true"></span>
                   </div>
                 </div>
                 <div class="col-md-2 col-lg-1">
@@ -51,17 +57,17 @@
                 </div>
                 <div class="col-md-4 col-lg-3">
                   <div class="form-group">
-                    <label class="form-label form-label-sm form-label-outside" for="form-reserve-persons">Mesa:</label>
-                    <select class="form-control input-sm" id="form-reserve-persons" name=":typeReserver" data-minimum-results-for-search="Infinity">
+                    <label class="form-label form-label-sm form-label-outside" for="form-reserve-type">Mesa:</label>
+                    <select class="form-control input-sm" id="form-reserve-type" name=":typeReserver" data-minimum-results-for-search="Infinity">
                       <option value="1" selected>Sin Decoración</option>
-                      <option value="2">Con Decoración</option>
+                      <option value="2">Con Decoración - $30.000</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-md-4 col-lg-4">
                   <div class="form-group">
-                    <label class="form-label form-label-sm form-label-outside" for="form-reserve-persons">Sede:</label>
-                    <select class="form-control input-sm" id="form-reserve-persons" name=":venues" data-minimum-results-for-search="Infinity">
+                    <label class="form-label form-label-sm form-label-outside" for="form-reserve-venues">Sede:</label>
+                    <select class="form-control input-sm" id="form-reserve-venues" name=":venues" data-minimum-results-for-search="Infinity">
                       <option value="1">Calle 7 Oeste #1-70</option>
                       <option value="2">Cl. 25 #85b, Ingenio</option>
                       <option value="3">23a la maria, Cra. 125 #58, Pance</option>
