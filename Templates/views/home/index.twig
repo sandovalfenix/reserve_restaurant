@@ -28,31 +28,19 @@
                 <div class="col-md-6 col-lg-3">
                   <div class="form-group has-feedback">
                     <label class="form-label form-label-sm form-label-outside" for="form-reserve-date">Fecha:</label>
-                    <input class="form-control input-sm" id="form-reserve-date" type="date" data-constraints="@Required" name=":dateReserver" required><span class="form-control-feedback mdi mdi-calendar" aria-hidden="true" required></span>
+                    <input class="form-control input-sm" id="form-reserve-date" type="date" data-constraints="@Required" name=":dateReserver" min="{{now|date('Y-m-d')}}" required><span class="form-control-feedback mdi mdi-calendar" aria-hidden="true" required></span>
                   </div>
                 </div>
                 <div class="col-md-4 col-lg-2">
                   <div class="form-group has-feedback">
-                    <label class="form-label form-label-sm form-label-outside" for="form-reserve-time">Hora:</label>
-                    <input class="form-control input-sm" id="form-reserve-time" type="time" data-constraints="@Required" name=":timeReserver" required><span class="form-control-feedback mdi mdi-clock" aria-hidden="true"></span>
+                    <label class="form-label form-label-sm form-label-outside" for="form-reserve-time">Hora [24 h]:</label>
+                    <input class="form-control input-sm" id="form-reserve-time" type="time" data-constraints="@Required" name=":timeReserver" min="08:00" max="20:00" required><span class="form-control-feedback mdi mdi-clock" aria-hidden="true"></span>
                   </div>
                 </div>
                 <div class="col-md-2 col-lg-1">
                   <div class="form-group">
                     <label class="form-label form-label-sm form-label-outside" for="form-reserve-persons">Personas:</label>
-                    <select class="form-control input-sm" id="form-reserve-persons" name=":numPerson" data-minimum-results-for-search="Infinity">
-                      <option value="1">1</option>
-                      <option value="2" selected>2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                      <option value="11">11</option>
-                    </select>
+                    <input type="number" class="form-control input-sm" id="form-reserve-persons" name=":numPerson" value="2" required>
                   </div>
                 </div>
                 <div class="col-md-4 col-lg-3">
@@ -64,7 +52,13 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-md-4 col-lg-4">
+                <div id="form-reserve-typeDesc" class="col-md-4 col-lg-3" style="display: none">
+                  <div class="form-group">
+                    <label class="form-label form-label-sm form-label-outside" for="form-reserve-typeDesc">Motivo de decoración:</label>
+                    <input type="text" name=":description" class="form-control input-sm">
+                  </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
                   <div class="form-group">
                     <label class="form-label form-label-sm form-label-outside" for="form-reserve-venues">Sede:</label>
                     <select class="form-control input-sm" id="form-reserve-venues" name=":venues" data-minimum-results-for-search="Infinity">
@@ -76,9 +70,33 @@
                 </div>
               </div>
               <div class="group offset-top-20 text-center offset-top-50 pt-5">
-                <button class="btn btn-primary" type="submit" style="padding-left: 30px; padding-right: 30px;">Hacer Reserva</button>
+                <button class="btn btn-primary" type="submit" style="padding-left: 30px; padding-right: 30px;" id="submit">Hacer Reserva</button>
               </div>
             </form>
           </div>
         </section>
+{% endblock %}
+{% block script %}
+    <script>
+    	$(function() {
+    		$('#form-reserve-type').on('change', function(){
+    			if($("#form-reserve-type option:selected").val() > 1){
+    				$('#form-reserve-typeDesc').removeAttr('style');
+    				$('#form-reserve-typeDesc input').attr('required');
+    			}else{
+    				$('#form-reserve-typeDesc').attr('style', 'display: none');
+    				$('#form-reserve-typeDesc input').removeAttr('required');
+    			} 
+    		});
+
+    		$('#form-reserve-persons').on('change', function(){
+    			if($(this).val() > 12){
+    				alert('Para reservar mas de 12 personas debe comunicarse con nuestra sede para poder realizarla');
+    				$('#submit').attr('style', 'display: none');
+    			}else{
+    				$('#submit').attr('style', 'padding-left: 30px; padding-right: 30px;');
+    			}
+    		});
+    	});
+    </script>
 {% endblock %}

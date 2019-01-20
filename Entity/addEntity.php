@@ -42,7 +42,7 @@ if ($property['Key'] == 'PRI' || $property['Key'] == 'MUL') {
 	$atributos .= "private \$".$property['Field'].";\n\t";
 	$setter .= "public function set".ucwords($property['Field'])."(\$".$property['Field'].") {
 		\$Config = new Config();
-		\$this->".$property['Field']." = \$Config->openCypher(\$".$property['Field'].", 'decrypt');
+		\$this->".$property['Field']." = \$Config->encrypt(\$".$property['Field'].", 'decrypt');
 	}\n\t";	
 }
 
@@ -77,19 +77,26 @@ class ".$tabla." extends Connect {
 		return \$this->lastInsertId();
 	}
 
-	public function read(\$col='*', \$row=false, \$property = NULL, \$value = NULL, \$limit='25'){
+	public function read(\$col='*', \$property = NULL, \$value = NULL, \$limit='25'){
 		\$complement = (!empty(\$property) && !empty(\$value)) ? \"WHERE \".\$property.\" = \".\$value : '';
 		
 		\$Query = \$this->prepare(\"SELECT \".\$col.\" FROM \".self::TABLA.\" \$complement ORDER BY ".$idProperty." LIMIT \".\$limit);
 
 		\$Query->execute();
 
-		if(\$row){
-			return \$Query->fetch(\$this::FETCH_ASSOC);
-		}else{
-			return \$Query->fetchAll(\$this::FETCH_ASSOC);
-		}
+		return \$Query->fetchAll(\$this::FETCH_ASSOC);		
+	}
+
+	public function row(\$col='*', \$property = NULL, \$value = NULL){
+		\$complement = (!empty(\$property) && !empty(\$value)) ? \"AND \".\$property.\" = \".\$value : '';
 		
+		\$Query = \$this->prepare(\"SELECT \".\$col.\" FROM \".self::TABLA.\" WHERE ".$idProperty." = :".$idProperty." \".\$complement);
+
+		\$Query->bindParam(\":$idProperty\", \$this->".$idProperty.");
+
+		\$Query->execute();
+		
+		return \$Query->fetch(\$this::FETCH_ASSOC);		
 	}
 
 	public function update(\$data){

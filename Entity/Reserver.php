@@ -18,31 +18,38 @@ class Reserver extends Connect {
 	// setters para obtencion de datos
 	public function setIdReserver($idReserver) {
 		$Config = new Config();
-		$this->idReserver = $Config->openCypher($idReserver, 'decrypt');
+		$this->idReserver = $Config->encrypt($idReserver, 'decrypt');
 	}
 	
 	//metodos para CRUD database
 	public function create($data){
-		$Query = $this->prepare("INSERT INTO ".self::TABLA." (dateReserver, timeReserver, nameCustomer, phoneCustomer, emailCustomer, numPerson, typeReserver, venues) VALUES (:dateReserver, :timeReserver, :nameCustomer, :phoneCustomer, :emailCustomer, :numPerson, :typeReserver, :venues)");
-		
+		$Query = $this->prepare("INSERT INTO ".self::TABLA." (dateReserver, timeReserver, nameCustomer, phoneCustomer, emailCustomer, numPerson, typeReserver, description, venues) VALUES (:dateReserver, :timeReserver, :nameCustomer, :phoneCustomer, :emailCustomer, :numPerson, :typeReserver, :description, :venues)");
+
 		$Query->execute($data);
 		
 		return $this->lastInsertId();
 	}
 
-	public function read($col='*', $row=false, $property = NULL, $value = NULL, $limit='25'){
+	public function read($col='*', $property = NULL, $value = NULL, $limit='25'){
 		$complement = (!empty($property) && !empty($value)) ? "WHERE ".$property." = ".$value : '';
 		
 		$Query = $this->prepare("SELECT ".$col." FROM ".self::TABLA." $complement ORDER BY idReserver LIMIT ".$limit);
 
 		$Query->execute();
 
-		if($row){
-			return $Query->fetch($this::FETCH_ASSOC);
-		}else{
-			return $Query->fetchAll($this::FETCH_ASSOC);
-		}
+		return $Query->fetchAll($this::FETCH_ASSOC);		
+	}
+
+	public function row($col='*', $property = NULL, $value = NULL){
+		$complement = (!empty($property) && !empty($value)) ? "AND ".$property." = ".$value : '';
 		
+		$Query = $this->prepare("SELECT ".$col." FROM ".self::TABLA." WHERE idReserver = :idReserver ".$complement);
+
+		$Query->bindParam(":idReserver", $this->idReserver);
+
+		$Query->execute();
+		
+		return $Query->fetch($this::FETCH_ASSOC);		
 	}
 
 	public function update($data){

@@ -33,8 +33,14 @@
 						{% else %}
 						<td>Con Decoración - $30.000</td>    
         				{% endif %}
-        			</tr>
-        			<tr>
+                    </tr>
+                    {% if Reserver.description %}
+                    <tr>
+                        <th>Motivo de Decoración</th>
+                        <td>{{Reserver.description}}</td>
+                    </tr>
+                    {% endif %}
+                    <tr>
         				<th>Cantidad de Personas</th>
         				<td>{{Reserver.numPerson}}</td>
         			</tr>

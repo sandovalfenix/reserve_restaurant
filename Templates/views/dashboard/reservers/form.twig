@@ -14,6 +14,14 @@
               <span class="input-icon fas fa-tags"></span>
             </div>
             <div class="form-group">
+              <label class="control-label">Teléfono:</label>
+              <input class="form-control form-control-lg" type="text" name=":phoneCustomer" value="{{Reserver.phoneCustomer}}" requiered>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Correo Electrónico:</label>
+              <input class="form-control form-control-lg" type="email" name=":emailCustomer" value="{{Reserver.emailCustomer}}">
+            </div>
+            <div class="form-group">
               <label class="control-label">Fecha Reserva:</label>
               <input class="form-control form-control-lg" type="date" name=":dateReserver" value="{{Reserver.dateReserver}}" requiered>
             </div>
@@ -38,14 +46,14 @@
                 {% endif %}                
               </select>
             </div>
+            <div class="form-group">
+              <label class="control-label">Motivo Decoracion:</label>
+              <input class="form-control form-control-lg" type="text" name=":description" value="{{Reserver.description}}">
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-          {% if Reserver.idReserver %}
-              <button type="submit" class="btn btn-warning">Editar</button>
-          {% else %}
-              <button type="submit" class="btn btn-success">Añadir</button>
-          {% endif %}        
+            <button type="submit" class="btn btn-warning">Editar</button>      
         </div>
       </div>    
     </form>

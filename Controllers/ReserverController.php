@@ -20,18 +20,18 @@ class ReserverController extends Config {
 
 	public function receipt($id) {
 		$Reserver = new Reserver;	
-
+		$Reserver->setIdReserver($this->encrypt($id));
 		$this->render('home/receipt.twig', array(
-			'Reserver' => $Reserver->read('*',true,'idReserver',$id),
+			'Reserver' => $Reserver->row(),
 		));
 	}
 
 	public function crud() {		
 		$this->render('dashboard/reservers/data.twig', array(
-			/*'alert' => $_SESSION['alert'],*/
+			'alert' => @$_SESSION['alert'],
 		));
 
-		//$_SESSION['alert'] = false;
+		@$_SESSION['alert'] = false;
 	}
 
 	public function read(){
@@ -39,16 +39,19 @@ class ReserverController extends Config {
 		$jsReserver = '[';
 		$i=0;
 		foreach ($Reservers->read() as $Reserver) {
-		extract($Reserver);
-		if ($i>0) {
-			$jsReserver .=',';
-		}
-		$idReserver = $this->encrypt($idReserver);
-		$typeReserver = ($typeReserver == 1) ? 'Sin Decoración' : 'Con Decoración - $30.000';
-		$jsReserver .= '
+			extract($Reserver);
+			if ($i>0) {
+				$jsReserver .=',';
+			}
+			$idReserver = $this->encrypt($idReserver);
+			$typeReserver = ($typeReserver == 1) ? 'Sin Decoración' : 'Con Decoración - $30.000';
+			$emailCustomer = ($emailCustomer) ? $emailCustomer : 'No tiene';
+			$description = ($description) ? $description : 'Ninguno';
+			$jsReserver .= '
 			{
 	            "id": "'.$idReserver.'",
-	            "title": "'.$nameCustomer.'", 
+	            "title": "'.$nameCustomer.'",
+	            "request" : "'.$dateRequest.'",
 	            "start": "'.$dateReserver.'T'.$timeReserver.'",
 	            "type": "success", 
 	            "typeTitle": "'.substr($nameCustomer,0,1).'",
@@ -56,9 +59,10 @@ class ReserverController extends Config {
 	            "email": "'.$emailCustomer.'",
 	            "numPerson": "'.$numPerson.'",
 	            "table": "'.$typeReserver.'",
+	            "description" : "'.$description.'",
 	            "color": "#'.substr(md5(mt_rand()),0,6).'75"
 	        }';
-	    $i++;
+	    	$i++;
 		}
 		$jsReserver .= ']';
 
@@ -67,16 +71,16 @@ class ReserverController extends Config {
 
 	public function editForm($id){
 		$Reserver = new Reserver;
-		
+		$Reserver->setIdReserver($id);
 		$this->render('dashboard/reservers/form.twig', array(
-			'Reserver' => $Reserver->read('*',true,'idReserver', $this->encrypt($id, 'decrypt')),
+			'Reserver' => $Reserver->row(),
 		));
 	}
 
 	public function update(){
 		extract($_POST);
 		$Reserver = new Reserver;
-		$Reserver->setIdCourse($idCourse);
+		$Reserver->setIdReserver($idReserver);
 		
 		$Reserver->update("name", "'".$name."'");
 		$Reserver->update("dateStart", "'".$dateStart."'");
@@ -85,32 +89,32 @@ class ReserverController extends Config {
 		$type = 'info';
 
     
-		$msj = 'El Reservero fue Actualizado Correctamente'; 
+		$msj = 'La Reserva fue Actualizada Correctamente'; 
 		
 		$_SESSION['alert'] = array(
 			'type' => $type,
 			'msj' => $msj, 
 		);
 
-		header('location: /course/crud');
+		header('location: /reserver/crud');
 	}
 
 	public function delete($id){
 		$Reserver = new Reserver;
-		$Reserver->setIdCourse($id);
+		$Reserver->setIdReserver($id);
 		
 		$Reserver->delete();
 
 		$type = 'danger';
 
     
-		$msj = 'El Reservero fue Eliminado Correctamente'; 
+		$msj = 'La Reserva fue Eliminada Correctamente'; 
 		
 		$_SESSION['alert'] = array(
 			'type' => $type,
 			'msj' => $msj, 
 		);
 
-		header('location: /course/crud');
+		header('location: /reserver/crud');
 	}
 }

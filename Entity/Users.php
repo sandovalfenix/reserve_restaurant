@@ -18,7 +18,7 @@ class Users extends Connect {
 	// setters para obtencion de datos
 	public function setIdUser($idUser) {
 		$Config = new Config();
-		$this->idUser = $Config->openCypher($idUser, 'decrypt');
+		$this->idUser = $Config->encrypt($idUser, 'decrypt');
 	}
 	
 	//metodos para CRUD database
@@ -30,19 +30,26 @@ class Users extends Connect {
 		return $this->lastInsertId();
 	}
 
-	public function read($col='*', $row=false, $property = NULL, $value = NULL, $limit='25'){
-		$complement = (!empty($property) && !empty($value)) ? "WHERE ".$createproperty." = ".$value : '';
+	public function read($col='*', $property = NULL, $value = NULL, $limit='25'){
+		$complement = (!empty($property) && !empty($value)) ? "WHERE ".$property." = ".$value : '';
 		
 		$Query = $this->prepare("SELECT ".$col." FROM ".self::TABLA." $complement ORDER BY idUser LIMIT ".$limit);
 
 		$Query->execute();
 
-		if($row){
-			return $Query->fetch($this::FETCH_ASSOC);
-		}else{
-			return $Query->fetchAll($this::FETCH_ASSOC);
-		}
+		return $Query->fetchAll($this::FETCH_ASSOC);		
+	}
+
+	public function row($col='*', $property = NULL, $value = NULL){
+		$complement = (!empty($property) && !empty($value)) ? "AND ".$property." = ".$value : '';
 		
+		$Query = $this->prepare("SELECT ".$col." FROM ".self::TABLA." WHERE idUser = :idUser ".$complement);
+
+		$Query->bindParam(":idUser", $this->idUser);
+
+		$Query->execute();
+		
+		return $Query->fetch($this::FETCH_ASSOC);		
 	}
 
 	public function update($data){
