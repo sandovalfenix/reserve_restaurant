@@ -1,30 +1,26 @@
 <div class="sidebar-section">
   <div >
     <div class="sidebar-user-a">
-      <img src="{{assets}}/img/image.gif" width="230px">
-      <div class="sidebar-user-a__name">{{session.NAME}}</div>
-      <div class="sidebar-user-a__description text-light">{{session.ROLE}}</div>
+      <a href="/dashboard"><img src="{{assets}}/img/image.gif" width="230px"></a>
     </div>
       <div class="sidebar-section__separator">Dashboard</div>
       <ul class="sidebar-section-nav">
+        <li class="sidebar-section-nav__item">
+          <a class="sidebar-section-nav__link" href="/">
+            <span class="sidebar-section-nav__item-icon fas fa-home"></span>
+            <span class="sidebar-section-nav__item-text">Inicio</span>
+            <!--span class="badge sidebar-section-nav__badge">2</span-->
+          </a>
+        </li>
         <li class="sidebar-section-nav__item">
           <a class="sidebar-section-nav__link" href="/reserver/crud">
             <span class="sidebar-section-nav__item-icon fas fa-tags"></span>
             <span class="sidebar-section-nav__item-text">Reservas</span>
             <!--span class="badge sidebar-section-nav__badge">2</span-->
           </a>
-        </li>
+        <li>
       </ul>
     </div>
-    <div class="sidebar-section__separator">Configuración</div>
-    <ul class="sidebar-section-nav">
-      <li class="sidebar-section-nav__item">
-        <a class="sidebar-section-nav__link" href="/user/profile/{{session.ID}}">
-          <span class="sidebar-section-nav__item-icon iconfont-activity"></span>
-          <span class="sidebar-section-nav__item-text">Perfil</span>
-        </a>
-      </li>
-    </ul>
 
     <!--<div class="sidebar-section-nav__footer">
       <ul class="sidebar-section-nav">

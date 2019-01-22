@@ -2,4 +2,103 @@
 {% use 'views/dashboard/nav.twig' %}
 {% block container %}
 	{% include 'views/dashboard/sidebar.twig' %}
+	<div class="page-content">		
+	{% if alert %}
+	<div class="alert action-alert action-alert--{{alert.type}} has-btn m-4" role="alert">
+	  <span class="action-alert__message">
+	  	{{alert.msj|raw }}
+	  </span>
+	  <span class="close ua-icon-alert-close action-alert__close" data-dismiss="alert"></span>
+	</div>
+	{% endif %}
+		<div class="container-fluid m-scheduler">
+			<div class="row">
+	    <div class="col-lg-4">
+	      <div class="ecommerce-widget ecommerce-widget-f ecommerce-widget-f--purple">
+	        <div class="ecommerce-widget-f__info">
+	          <div class="ecommerce-widget-f__title">Total Visitas</div>
+	          <div class="ecommerce-widget-f__value">{{Logs.numViews}}</div>
+	        </div>
+	        <div class="ecommerce-widget-f__label">
+	          <div class="ua-icon-widget-binoculars ecommerce-widget-f__icon"></div>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="col-lg-4">
+	      <div class="ecommerce-widget ecommerce-widget-f ecommerce-widget-f--orange">
+	        <div class="ecommerce-widget-f__info">
+	          <div class="ecommerce-widget-f__title">Total Reservas General</div>
+	          <div class="ecommerce-widget-f__value">{{Reserver.numReserverGlobal}}</div>
+	        </div>
+	        <div class="ecommerce-widget-f__label">
+	          <div class="fas fa-utensils ecommerce-widget-f__icon"></div>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="col-lg-4">
+	      <div class="ecommerce-widget ecommerce-widget-f ecommerce-widget-f--orange">
+	        <div class="ecommerce-widget-f__info">
+	          <div class="ecommerce-widget-f__title">Total Reservas Sede</div>
+	          <div class="ecommerce-widget-f__value">{{Venues.numReserverVenues}}</div>
+	        </div>
+	        <div class="ecommerce-widget-f__label">
+	          <div class="fas fa-home ecommerce-widget-f__icon"></div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="row">
+    <div class="col-lg-12">
+      <div class="statistic-widget statistic-widget-e">
+        <h5 class="statistic-widget-e__heading">Reservas Diarias</h5>
+        <div class="statistic-widget-e__items">          
+          <div class="statistic-widget-e__item">
+            <div class="statistic-widget-e__item-heading">Ayer</div>
+            <div class="statistic-widget-e__item-value">{{VenuesDayYes.numReserverVenues}}</div>
+          </div>
+          <div class="statistic-widget-e__item">
+            <div class="statistic-widget-e__item-heading">Hoy</div>
+            <div class="statistic-widget-e__item-value">{{VenuesDayNow.numReserverVenues}}</div>          </div>
+          <div class="statistic-widget-e__item">
+            <div class="statistic-widget-e__item-heading">Promedio</div>
+            <div class="statistic-widget-e__item-value">{{(VenuesDayNow.numReserverVenues + VenuesDayYes.numReserverVenues) / 2 }}</div>
+          </div>
+        </div>
+
+        <h5 class="statistic-widget-e__heading">Cantidad de Personas Diarias</h5>
+        <div class="statistic-widget-e__items statistic-widget-e__items--facebook">
+          <div class="statistic-widget-e__item">
+            <div class="statistic-widget-e__item-heading">Ayer</div>
+            {% if not VenuesNumPersDayYes.numPerson %}
+            <div class="statistic-widget-e__item-value">0</div>
+            {% endif %}
+            <div class="statistic-widget-e__item-value">{{VenuesNumPersDayYes.numPerson}}</div>
+          </div>
+          <div class="statistic-widget-e__item">
+            <div class="statistic-widget-e__item-heading">Hoy</div>
+            <div class="statistic-widget-e__item-value">{{VenuesNumPersDayNow.numPerson}}</div>
+          </div>
+          <div class="statistic-widget-e__item">
+            <div class="statistic-widget-e__item-heading">Promedio</div>
+            <div class="statistic-widget-e__item-value">{{(VenuesNumPersDayYes.numPerson + VenuesNumPersDayNow.numPerson) / 2}}</div>
+          </div>
+        </div>
+
+        <h5 class="statistic-widget-e__heading">Decoracion Diarias</h5>
+        <div class="statistic-widget-e__items statistic-widget-e__items--linkedin">
+          <div class="statistic-widget-e__item">
+            <div class="statistic-widget-e__item-heading">Sin Decoracion</div>
+            <div class="statistic-widget-e__item-value">{{Venuestype1DayNow.numType}}</div>
+          </div>
+          <div class="statistic-widget-e__item">
+            <div class="statistic-widget-e__item-heading">Con Decoracion</div>
+            <div class="statistic-widget-e__item-value">{{Venuestype2DayNow.numType}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+		</div>
+	</div>
+	
 {% endblock %}

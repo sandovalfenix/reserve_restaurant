@@ -88,9 +88,13 @@ class ".$tabla." extends Connect {
 	}
 
 	public function row(\$col='*', \$property = NULL, \$value = NULL){
-		\$complement = (!empty(\$property) && !empty(\$value)) ? \"AND \".\$property.\" = \".\$value : '';
-		
-		\$Query = \$this->prepare(\"SELECT \".\$col.\" FROM \".self::TABLA.\" WHERE ".$idProperty." = :".$idProperty." \".\$complement);
+		if (\$this->".$idProperty.") {
+			\$complement = (!empty(\$property) && !empty(\$value)) ? \"WHERE ".$idProperty." = :".$idProperty." \"AND \".\$property.\" = \".\$value : '';
+		}else{
+			\$complement = (!empty(\$property) && !empty(\$value)) ? \"WHERE \".\$property.\" = \".\$value : '';
+		}
+
+		\$Query = \$this->prepare(\"SELECT \".\$col.\" FROM \".self::TABLA.\" \".\$complement);
 
 		\$Query->bindParam(\":$idProperty\", \$this->".$idProperty.");
 
@@ -100,17 +104,16 @@ class ".$tabla." extends Connect {
 	}
 
 	public function update(\$data){
-		\$property = \"\";
+		\$property = \"\"; \$i=0;
 	  	foreach (\$data as \$name => \$value) {
-			if (\$name === reset(\$data)) {
-				\$property =  \$name.\" = :\".\$name;    	
+			if (\$i==0) {
+				\$property .=  str_replace(\":\", \"\", \$name).\" = \".\$name; 	
 			}else{
-				\$property =  \",\".\$name.\" = :\".\$name;
-			}    	
-		}		    
-	    \$Query = \$this->prepare(\"UPDATE \".self::TABLA.\" SET \".\$property.\" WHERE ".$idProperty." = :".$idProperty."\");
-	 	
-	 	\$Query->bindParam(\":$idProperty\", \$this->".$idProperty.");
+				\$property .=  \", \".str_replace(\":\", \"\", \$name).\" = \".\$name;
+			}
+			\$i++;    	
+		}	    
+	    \$Query = \$this->prepare(\"UPDATE \".self::TABLA.\" SET \".\$property.\" WHERE ".$idProperty." = \".\$this->".$idProperty.");
 
 	  	return \$Query->execute(\$data);
 	}

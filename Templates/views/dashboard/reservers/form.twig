@@ -1,5 +1,5 @@
   <div class="modal-dialog modal-sm">
-    <form method="post" action="/reserver/new">
+    <form method="post">
       <div class="modal-content">
         <div class="modal-header">
           <h6 class="modal-title" id="reserverModalLabel">Evento</h6>
@@ -8,7 +8,6 @@
           </button>
         </div>
         <div class="modal-body">
-            <input type="hidden" name=":idReserver" value="{{Reserver.idReserver|encrypt}}">
             <div class="input-group input-group-icon icon-left input-group-lg">
               <input class="form-control form-control-lg" type="text" placeholder="Nombre Evento" name=":nameCustomer" value="{{Reserver.nameCustomer}}" requiered>
               <span class="input-icon fas fa-tags"></span>
@@ -32,7 +31,6 @@
             <div class="form-group">
               <label class="control-label">Cantidad de personas:</label>
               <input class="form-control form-control-lg" type="number" name=":numPerson" value="{{Reserver.numPerson}}" requiered>
-              <input type="hidden" name=":idReserver" value="{{Reserver.idReserver|encrypt}}">
             </div>
             <div class="form-group">
               <label class="control-label">Mesa:</label>
@@ -53,7 +51,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-            <button type="submit" class="btn btn-warning">Editar</button>      
+          <button type="submit" class="btn btn-warning">Editar</button>      
         </div>
       </div>    
     </form>

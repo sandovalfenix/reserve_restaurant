@@ -40,10 +40,14 @@ class Reserver extends Connect {
 		return $Query->fetchAll($this::FETCH_ASSOC);		
 	}
 
-	public function row($col='*', $property = NULL, $value = NULL){
-		$complement = (!empty($property) && !empty($value)) ? "AND ".$property." = ".$value : '';
-		
-		$Query = $this->prepare("SELECT ".$col." FROM ".self::TABLA." WHERE idReserver = :idReserver ".$complement);
+	public function row($col='*', $property = NULL, $value = NULL, $add=''){
+		if ($this->idReserver) {
+			$complement = "WHERE idReserver = :idReserver "; 
+			$complement .= (!empty($property) && !empty($value)) ? "AND ".$property." = ".$value : '';
+		}else{
+			$complement = (!empty($property) && !empty($value)) ? "WHERE ".$property." = ".$value : '';
+		}		
+		$Query = $this->prepare("SELECT ".$col." FROM ".self::TABLA." ".$complement." ".$add);
 
 		$Query->bindParam(":idReserver", $this->idReserver);
 
@@ -53,17 +57,17 @@ class Reserver extends Connect {
 	}
 
 	public function update($data){
-		$property = "";
+		$property = ""; $i=0;
 	  	foreach ($data as $name => $value) {
-			if ($name === reset($data)) {
-				$property =  $name." = :".$name;    	
+			if ($i==0) {
+				$property .=  str_replace(":", "", $name)." = ".$name; 	
 			}else{
-				$property =  ",".$name." = :".$name;
-			}    	
-		}		    
-	    $Query = $this->prepare("UPDATE ".self::TABLA." SET ".$property." WHERE idReserver = :idReserver");
-	 	
-	 	$Query->bindParam(":idReserver", $this->idReserver);
+				$property .=  ", ".str_replace(":", "", $name)." = ".$name;
+			}
+			$i++;    	
+		}
+			    
+	    $Query = $this->prepare("UPDATE ".self::TABLA." SET ".$property." WHERE idReserver = ".$this->idReserver);
 
 	  	return $Query->execute($data);
 	}

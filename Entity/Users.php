@@ -75,5 +75,24 @@ class Users extends Connect {
 	  	
 	  	return $Query->execute();
 	}
+
+	public function check($username, $password){
+		$Config = new Config();
+		$idUser = false;
+		$active = false;
+		
+		$Query = $this->prepare("SELECT idUser, active FROM ".self::TABLA." WHERE username = :username AND password = :password");
+
+		$Query->execute(array(
+			':username' => $username,
+			':password' => $Config->encrypt($password)
+		));
+		if ($row = $Query->fetch($this::FETCH_ASSOC)) {
+			extract($row);
+			return 	($active) ? $Config->encrypt($idUser) : false;	
+		}else{
+			return false;
+		}
+	}
 }
 	

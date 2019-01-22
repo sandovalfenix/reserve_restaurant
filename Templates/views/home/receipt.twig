@@ -1,8 +1,8 @@
 {% extends '/layout/default_layout.twig' %}
 {% block container %}
-    <section class="bg-gray-darkest context-dark m-5 pt-2 pb-4 animated fadeIn" id="reserve-now">
+    <section class="bg-gray-darkest mt-3 ml-5 mr-5 context-dark pt-2 pb-4 animated fadeIn pl-5 pr-5" id="reserve-now">
         <div class="container">
-        	<table class="table table-striped text-dark h4">
+        	<table class="table table-sm table-striped text-dark h4">
         			<tr>
         				<th colspan="2" class="text-center h3">Reservación Exitosa!</th>
         			</tr>  
@@ -56,5 +56,8 @@
         			</tr>
         	</table>
         </div>
+        <div class="mt-3 text-center">
+            <a href="/" class="btn btn-primary">Regresar</a>
+         </div>
     </section>
 {% endblock %}

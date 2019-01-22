@@ -34,14 +34,13 @@
       <div class="dropdown navbar-dropdown">
         <a class="dropdown-toggle navbar-dropdown-toggle navbar-dropdown-toggle__user" data-toggle="dropdown" href="#">
           <img src="{{assets}}/img/image.gif" alt="" class="navbar-dropdown-toggle__user-avatar">
-          <span class="navbar-dropdown__user-name">{{session.NAME}}</span>
+          <span class="navbar-dropdown__user-name">{{session.USERNAME}}</span>
         </a>
         <div class="dropdown-menu navbar-dropdown-menu navbar-dropdown-menu__user">
           <div class="navbar-dropdown-user-content">
             <div class="dropdown-user__avatar"><img src="{{assets}}/img/image.gif" alt=""/></div>
             <div class="dropdown-info">
-              <div class="dropdown-info__name">{{session.NAME}}</div>
-              <div class="dropdown-info__job">{{session.ROLE}}</div>
+              <div class="dropdown-info__name">{{session.USERNAME}}</div>
             </div>
           </div>
             <a class="dropdown-item navbar-dropdown__item" href="/log/out">Cerrar sesión</a>
