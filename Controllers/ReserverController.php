@@ -24,6 +24,7 @@ class ReserverController extends Config {
 		$Reserver = new Reserver;
 		$id = $Reserver->create($_POST);
 		if($id){
+			$this->sendEmail($id);
 			$this->receipt($id);
 		}else{
 			echo 'error en la reserva';
@@ -36,7 +37,11 @@ class ReserverController extends Config {
 		$this->render('home/receipt.twig', array(
 			'Reserver' => $Reserver->row(),
 		));
+	}
 
+	public function sendEmail($id){
+		$Reserver = new Reserver;	
+		$Reserver->setIdReserver($this->encrypt($id));
 		extract($Reserver->row('emailCustomer'));
 		$body= file_get_contents($_SERVER['HTTP_HOST'].'/reserver/receipt/'.$id);
 		$this->phpMailer('reserva@cafevalparaiso.com', $emailCustomer, $body, 'Reservas Cafe Valparaiso');

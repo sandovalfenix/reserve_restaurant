@@ -18,9 +18,8 @@ class Config{
 		
 		$this->twig = new \Twig_Environment($this->loader);
 		$this->assets = array('assets' => '/Templates/assets');
-		$this->twig->addGlobal('session', $_SESSION);
 		$filter = new \Twig_SimpleFilter('encrypt', function ($string){
-		    return $this->openCypher($string);
+		    return $this->encrypt($string);
 		});
 		$this->twig->addFilter($filter);
 	}
@@ -36,9 +35,9 @@ class Config{
 		    //Server settings                               // Enable verbose debug output
 		    $mail->isSMTP();                               // Set mailer to use SMTP
 		    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-		    $mail->SMTPAuth = true;                               // Enable SMTP authentication 
-		    $mail->Username = 'Reservasvalparaisocali@gmail.com';                 // SMTP username
-		    $mail->Password = 'valparaiso1.';                                 // SMTP password
+		    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+		    $mail->Username = 'reservasvalparaisocali@gmail.com';                 // SMTP username
+		    $mail->Password = 'valparaiso1.';                           // SMTP password
 		    $mail->SMTPSecure = 'ssl';  
 		    $mail->SMTPOptions = array(
 			'ssl' => array(
@@ -49,7 +48,7 @@ class Config{
 			$mail->Port = 465;                                    // TCP port to connect to
 
 		    //Recipients
-		    $mail->setFrom($from, 'CAFE VALPARAISO');
+		    $mail->setFrom($from, 'CAFE VALPARAISO CALI');
 		    $mail->addAddress($address, 'Cliente');          // Name is optional
 
 		    //Content
@@ -57,7 +56,7 @@ class Config{
 		    $mail->Subject = $subject;
 		    $mail->Body    = $body;
 
-		    //$send = ($mail->send()) ? true : false;
+		    $send = ($mail->send()) ? true : false;
 		    $msj = null;
 		} catch (Exception $e) {
 			$msj = 'Error al regstrarce. Mailer Error: ' . $mail->ErrorInfo;

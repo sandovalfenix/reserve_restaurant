@@ -1,63 +1,295 @@
-{% extends '/layout/default_layout.twig' %}
-{% block container %}
-    <section class="bg-gray-darkest mt-3 ml-5 mr-5 context-dark pt-2 pb-4 animated fadeIn pl-5 pr-5" id="reserve-now">
-        <div class="container">
-        	<table class="table table-sm table-striped text-dark h4">
-        			<tr>
-        				<th colspan="2" class="text-center h3">Reservación Exitosa!</th>
-        			</tr>  
-        			<tr>
-        				<th>Nombre</th>
-        				<td>{{Reserver.nameCustomer}}</td>
-        			</tr>
-        			<tr>
-        				<th>Teléfono</th>
-        				<td>{{Reserver.phoneCustomer}}</td>
-        			</tr>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html xmlns="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head><META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW"><META NAME="referrer" CONTENT="no-referrer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+
+        /** RESET STYLES **/
+        p{margin:1em 0;} /*Yahoo paragraph fix*/
+        table td{border-collapse:collapse;} /*This resolves the Outlook 07, 10, and Gmail td padding issue fix*/ 
+        img, a img{border:0; height:auto; outline:none; text-decoration:none;} /* Remove the borders that appear when linking images with "border:none" and "outline:none" */
+        @-ms-viewport{width: device-width;}
+        h1, h2, h3, h4, h5, h6{display:block !important; margin:0 !important; padding:0 !important;}
+        body,{height:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100 margin:0; padding:0; width:100% !important;} /* Prevent Webkit and Windows Mobile platforms from changing default font sizes, while not breaking desktop design. */
+        linkfix a {color: #bababa !important; text-decoration: none;}
+        
+        /** CLIENT-SPECIFIC STYLE **/
+        img{-ms-interpolation-mode: bicubic;} /* Force IE to smoothly render resized images. */
+        table{mso-table-lspace:0pt; mso-table-rspace:0pt;} /* Remove spacing between tables in Outlook 2007 and up. */
+        .ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Outlook.com to display emails at full width. */
+        p, a, li, td, blockquote{mso-line-height-rule:exactly;} /* Force Outlook to render line heights as they're originally set. */
+        a[href^="tel"], a[href^="sms"]{color:inherit; cursor:default; text-decoration:none;} /* Force mobile devices to inherit declared link styles. */
+        p, a, li, td, body, table, blockquote{-ms-text-size-adjust:100%; -webkit-text-size-adjust:100%;} /* Prevent Windows- and Webkit-based mobile platforms from changing declared text sizes. */
+        .ExternalClass, .ExternalClass p, .ExternalClass td, .ExternalClass div, .ExternalClass span, .ExternalClass font{line-height:100%;} /* Force Outlook.com to display line heights normally. */
+        
+        /** STRUCTURAL STYLES **/
+        
+        /** CONTENT STYLES **/
+        body {
+            width: 100%;
+            background-color: #e8e8e8; 
+            margin:0 auto;
+            padding:0; 
+            -webkit-font-smoothing: antialiased;
+            font-family:"Arial", sans-serif !important;
+        }
+        
+        /** MOBILE STYLES **/
+        @media only screen and (max-device-width: 480px), screen and (max-width: 480px) {
+            /* CLIENT-SPECIFIC STYLES */
+            /* Template Shell */
+            body[yahoo] {
+                width:100% !important; 
+                min-width:100% !important; 
+                margin: 0 auto !important;
+            } /* Force iOS Mail to render the email at full width & removes margins. */
+            
+            
+            /*** STRUCTURAL ***/
+            
+            body[yahoo] .container { width: 100% !important; max-width: 480px !important; }
+            body[yahoo] .mobileShow { display: block !important; margin:0 !important; padding:0 !important; overflow: visible !important; width: auto !important; max-height:inherit !important;}
+            body[yahoo] .mobileHide { display:none !important; }
+            body[yahoo] .photo img { width: 100% !important; max-width:100% !important; height: auto !important; }  
+            body[yahoo] .columnStack { width:100% !important; display: block !important;}
+            body[yahoo] .contentCenter, body[yahoo] .contentCenter img, body[yahoo] .contentCenter table { margin: 0 auto !important; }
+            body[yahoo] .textCenter { text-align: center !important; }
+            body[yahoo] .textLeft { text-align: left !important; }
+            body[yahoo] .nullBorder { border: none !important; }
+            body[yahoo] .alignTop { vertical-align: top !important;}
+            body[yahoo] .autoHeight {height: auto !important;}
+           
+            /*** PADDING ***/
+             
+            body[yahoo] .nullPad { padding: 0px !important; } 
+            body[yahoo] .mobilePad { padding-right: 30px !important; padding-left: 30px !important; }
+            body[yahoo] .bottomPad5 { padding-bottom: 5px !important; } 
+            body[yahoo] .topPad5 { padding-bottom: 5px !important; }
+            body[yahoo] .topPad10 { padding-top: 10px !important; }
+            body[yahoo] .bottomPad10 { padding-bottom: 10px !important; }
+            body[yahoo] .topPad15 { padding-top: 15px !important; }
+            body[yahoo] .bottomPad15 { padding-bottom: 15px !important; }
+            body[yahoo] .topPad20 { padding-top: 20px !important; }
+            body[yahoo] .bottomPad20 { padding-bottom: 20px !important; }
+            body[yahoo] .topPad25 { padding-top: 25px !important; }
+            body[yahoo] .bottomPad25 { padding-bottom: 25px !important; }
+            body[yahoo] .bottomPad30 { padding-bottom: 30px !important; }
+            body[yahoo] .rightPad30 { padding-right: 30px !important; }
+            
+            /*** FONT RESIZING ***/
+            
+            body[yahoo] .fontResize17 { font-size: 17px !important; }
+            
+        }           
+
+        
+</style>
+
+<!--[if gte mso 9]>
+<style>
+    /* Target Outlook 2007 and 2010 */
+            html, body { font-family: Arial, sans-serif !important; }  
+            table { font-family: Arial, sans-serif !important; }  
+            td { font-family: Arial, sans-serif !important; }
+</style>
+<![endif]-->
+
+</head><body style="margin: 0px; -webkit-text-size-adjust:none; background-color: #dddddd;" yahoo="fix">
+
+    
+    <!-- Start of: Header--> 
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+            <td align="center" bgcolor="#dddddd" style="padding: 0px 20px;" class="nullPad">
+                <table border="0" cellspacing="0" cellpadding="0" width="600" class="container">
                     <tr>
-                        <th>Correo Electrónico</th>
-                        <td>{{Reserver.emailCustomer}}</td>
+                        <td align="center" bgcolor="#ffffff">
+                            <!-- Start of: EA Header -->
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+        <td align="center" valign="middle" style="padding: 13px 40px;" class="mobilePad">
+            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                <tr>
+                    <td align="center" valign="middle">
+                        <a href="##" alias="EA Logo - Header" target="_blank"><img alt="Logo" src="https://reserverestaurant.herokuapp.com/Templates/assets/img/logo.png" border="0" style="display: block;" /></a>
+                    </td>                   
+                </tr>
+            </table>
+        </td>
+        
+    </tr>
+</table>
+<!-- End of: EA Header -->
+                        </td>
                     </tr>
-        			<tr>
-        				<th>Fecha de Reserva</th>
-        				<td>{{Reserver.dateReserver}}</td>
-        			</tr>
-        			<tr>
-        				<th>Hora de Reserva</th>
-        				<td>{{Reserver.timeReserver|date('h:i:s a')}}</td>
-        			</tr>
-        			<tr>
-        				<th>Mesa</th>
-        				{% if Reserver.typeReserver == 1 %}
-						<td>Sin Decoración</td>
-						{% else %}
-						<td>Con Decoración - $30.000</td>    
-        				{% endif %}
-                    </tr>
-                    {% if Reserver.description %}
+                </table>
+            </td>
+        </tr>
+    </table>
+    <!-- End of: Header -->
+    <!-- Start of: Content --> 
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+            <td align="center" bgcolor="#dddddd" style="padding: 0px 20px;" class="nullPad">
+                <table border="0" cellspacing="0" cellpadding="0" width="600" class="container">
                     <tr>
-                        <th>Motivo de Decoración</th>
-                        <td>{{Reserver.description}}</td>
-                    </tr>
+                        <td align="center" bgcolor="#ffffff">
+                            <!-- Start of: Address Verification -->
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+        <td align="left" valign="top" width="100%" style="font-family: 'Arial', sans-serif; font-size: 14px; mso-line-height-rule: exactly; line-height: 22px; color: #939598; padding: 30px 30px 30px;" class="mobilePad">
+            <span style="color: #000000;"><b>Hola, tu reserva fue todo un exito!:</b></span><br><br>
+            Haz realizado una reserva en nuestro sistema con los siguientes datos:<br><br>
+            <ul>
+                <li>Nombre : <b>{{Reserver.nameCustomer}}</b></li>
+                <li>Telefono : <b>{{Reserver.phoneCustomer}}</b></li>
+                <li>Correo : <b>{{Reserver.emailCustomer}}</b></li>
+                <li>Fecha y Hora de Reservacion: <b>{{Reserver.dateReserver}} - {{Reserver.timeReserver|date('h:i:s a')}}</b></li>
+                <li>Mesa: {% if Reserver.typeReserver == 1 %}
+                        <b>Sin Decoración</b>
+                        {% else %}
+                        <b>Con Decoración - $30.000</b>    
+                        {% endif %}</li>
+                {% if Reserver.description %}
+                    <li>Motivo de Decoración : <b>{{Reserver.description}}</b>
+                    </li>
                     {% endif %}
+                <li>Sede: {% if Reserver.venues == 1 %}
+                        <b>Calle 7 Oeste #1-70</b>
+                        {% elseif Reserver.venues == 2 %}
+                        <b>Cl. 25 #85b, Ingenio</b>           
+                        {% else %}
+                        <b>23a la maria, Cra. 125 #58, Pance</b>
+                        {% endif %} </li>
+            </ul>
+            <br>
+            Gracias por utilizar nuestro sistema de reserva y por ayudarnos a mantener la seguridad de la misma.<br><br>
+            ¡Feliz Día!<br>
+            El equipo de CAFE VALPARAISO
+        </td>
+    </tr>
+</table>
+<!-- End of: Address Verification -->
+                        </td>
+                    </tr>
+                </table>
+                <table border="0" cellspacing="0" cellpadding="0" width="600" class="container">
                     <tr>
-        				<th>Cantidad de Personas</th>
-        				<td>{{Reserver.numPerson}}</td>
-        			</tr>
-        			<tr>
-        				<th>Sede</th>
-        				{% if Reserver.venues == 1 %}
-						<td>Calle 7 Oeste #1-70</td>
-						{% elseif Reserver.venues == 2 %}
-                      	<td>Cl. 25 #85b, Ingenio</td>       	
-						{% else %}
-                      	<td>23a la maria, Cra. 125 #58, Pance</td>
-        				{% endif %}	
-        			</tr>
-        	</table>
-        </div>
-        <div class="mt-3 text-center">
-            <a href="/" class="btn btn-primary">Regresar</a>
-         </div>
-    </section>
-{% endblock %}
+                        <td align="center" bgcolor="#ffffff">
+                            
+                        </td>
+                    </tr>
+                </table>
+                <table border="0" cellspacing="0" cellpadding="0" width="600" class="container">
+                    <tr>
+                        <td align="center" bgcolor="#ffffff">
+                            
+                        </td>
+                    </tr>
+                </table>
+                <table border="0" cellspacing="0" cellpadding="0" width="600" class="container">
+                    <tr>
+                        <td align="center" bgcolor="#ffffff">
+                            
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <!-- End of: Content -->
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+            <td align="center" bgcolor="#dddddd" style="padding: 0px 20px;" class="nullPad">
+                <table cellpadding="0" cellspacing="0" border="0" width="600" class="container">
+                    <tr>
+                        <td align="center" bgcolor="#ffffff" height="1" style="font-size: 0px; mso-line-height-rule: exactly; line-height: 1px; height: 1px; padding: 0px 30px;" class="mobilePad">
+                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                <tr>
+                                    <td align="center" bgcolor="#dddddd" height="1" style="font-size: 0px; mso-line-height-rule: exactly; line-height: 1px; height: 1px;">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <!-- Start of: Footer --> 
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+            <td align="center" bgcolor="#dddddd" style="padding: 0px 20px;" class="nullPad">
+                <table border="0" cellspacing="0" cellpadding="0" width="600" class="container">
+                    <tr>
+                        <td align="center" bgcolor="#ffffff">
+                            <!-- Start of: EA Footer-->
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+        <td align="left" valign="top" width="100%" style=" padding: 30px;" class="mobilePad">
+            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                <tr>                    
+                    <td rowspan="3" align="center" valign="middle" style="padding: 0px 15px">
+                        <a href="javascript:void(0)"  target="_blank"><img alt="Logo" src="https://image.jimcdn.com/app/cms/image/transf/dimension=270x10000:format=gif/path/s5d34b6a1f8874e37/image/ie691ec9f59ff3926/version/1443369434/image.gif" width="97" border="0" style="display: block;" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" valign="top" style="font-family: 'Arial', sans-serif; font-size: 11px; mso-line-height-rule: exactly; line-height: 12px; color: #939598; padding-bottom: 12px;">
+                        
+                        Si necesitas asistencia técnica, ponte en contacto con la  <a href="http://www.seguridadsocialintegral.com/"  target="_blank" style="color: #4dafd4; text-decoration: none;"><b>Ayuda de Cafe Valparaiso - Cali</b></a>.<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" valign="top" style="font-family: 'Arial', sans-serif; font-size: 11px; mso-line-height-rule: exactly; line-height: 12px; color: #939598;">
+                        POLÍTICA DE PRIVACIDAD: nuestra Política de privacidad online certificada te proporciona seguridad. Para consultar íntegramente nuestra Política de privacidad y directiva de cookies.
+                        © 2018 Cafe Valparaiso - Cali. All Rights Reserved.<br>
+                        
+                        <a href="javascript:void(0)"  target="_blank" style="color: #4dafd4; text-decoration: none;"><b>Contacto</b></a> |
+                        
+                        <a href="javascript:void(0)"  target="_blank" style="color: #4dafd4; text-decoration: none;"><b>Política de privacidad y directiva de cookies</b></a> |
+                        
+                        <a href="javascript:void(0)"  target="_blank" style="color: #4dafd4; text-decoration: none;"><b>Acuerdo de usuario</b></a> |
+                        
+                        <a href="javascript:void(0)"  target="_blank" style="color: #4dafd4; text-decoration: none;"><b>Información legal</b></a> 
+                        
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- End of: EA Footer -->
+                        </td>
+                    </tr>
+                </table>
+                <table border="0" cellspacing="0" cellpadding="0" width="600" class="container">
+                    <tr>
+                        <td align="center" bgcolor="#ffffff">
+                            
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <!-- End of: Footer -->
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+            <td align="center" bgcolor="#dddddd" height="50" style="font-size: 0px; mso-line-height-rule: exactly; line-height: 50px; height: 50px;">
+                &nbsp;
+            </td>
+        </tr>
+    </table>
+    <!-- Start of : keep gmail android from collapsing table -->
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="620" class="mobileHide">
+        <tr>
+            <td height="1" style="font-size: 1px; line-height: 1px; min-width: 620px;">&nbsp;</td>
+        </tr>
+    </table>
+    <!-- End of : keep gmail android from collapsing table -->
+
+</body></html>
