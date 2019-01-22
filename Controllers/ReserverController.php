@@ -43,8 +43,8 @@ class ReserverController extends Config {
 		$Reserver = new Reserver;	
 		$Reserver->setIdReserver($this->encrypt($id));
 		extract($Reserver->row('emailCustomer'));
-		$body= file_get_contents($_SERVER['HTTP_HOST'].'/reserver/receipt/'.$id);
-		var_dump($body);exit();
+		$body= file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/reserver/receipt/'.$id);
+		
 		$this->phpMailer('reserva@cafevalparaiso.com', $emailCustomer, $body, 'Reservas Cafe Valparaiso');
 	}
 
