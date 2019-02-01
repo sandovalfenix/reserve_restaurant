@@ -92,9 +92,9 @@
     		$('#form-reserve-persons').on('change', function(){
     			if($(this).val() > 12){
     				alert('Para reservar mas de 12 personas debe comunicarse con nuestra sede para poder realizarla');
-    				$('#submit').attr('style', 'display: none');
+            $('#submit').removeAttr('type');
     			}else{
-    				$('#submit').attr('style', 'padding-left: 30px; padding-right: 30px;');
+    				$('#submit').attr('type', 'submit');
     			}
     		});
     	});
